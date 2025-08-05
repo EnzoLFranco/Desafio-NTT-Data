@@ -53,6 +53,14 @@ public class ProdutoController {
         }
     }
 
-    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteProduto(@PathVariable Long id){
+        if (produtoRepository.existsById(id)){
+            produtoRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }
